@@ -48,8 +48,14 @@ RUN chmod +x /home/miniconda.sh && \
 ENV PATH="/home/miniconda/bin:${PATH}"
 
 
-# Install wompwomp and set up Python environment
- RUN R -e "if (!require('remotes', quietly = TRUE)) install.packages('remotes'); \
-            remotes::install_github('pachterlab/wompwomp@xxxxx'); \
-            remotes::install_github('pachterlab/biowomp@c05bad9'); \
-            wompwomp::setup_python_env(yes=TRUE)"
+# # Install wompwomp and set up Python environment
+# RUN R -e "if (!require('remotes', quietly = TRUE)) install.packages('remotes'); \
+#             remotes::install_github('pachterlab/wompwomp@xxxxx', upgrade='never'); \
+#             remotes::install_github('pachterlab/biowomp@c05bad9', upgrade='never'); \
+#             wompwomp::setup_python_env(yes=TRUE)"
+
+# Install local wompwomp and biowomp packages, then set up Python env
+RUN R -e "if (!require('devtools', quietly = TRUE)) install.packages('devtools'); \
+    devtools::install('/Users/joeyrich/Desktop/local/wompwomp', upgrade='never'); \
+    devtools::install('/Users/joeyrich/Desktop/local/biowomp', upgrade='never'); \
+    wompwomp::setup_python_env(yes=TRUE)"
