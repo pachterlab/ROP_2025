@@ -43,19 +43,22 @@ RUN chmod +x /home/miniconda.sh && \
     /home/miniconda/bin/conda config --add channels defaults && \
     /home/miniconda/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main && \
     /home/miniconda/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
- 
+
 # Ensure conda is on PATH for all subsequent Docker layers
 ENV PATH="/home/miniconda/bin:${PATH}"
 
+# Accept Anaconda TOS to allow package downloads
+RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main && \
+    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 
-# # Install wompwomp and set up Python environment
-# RUN R -e "if (!require('remotes', quietly = TRUE)) install.packages('remotes'); \
-#             remotes::install_github('pachterlab/wompwomp@xxxxx', upgrade='never'); \
-#             remotes::install_github('pachterlab/biowomp@c05bad9', upgrade='never'); \
-#             wompwomp::setup_python_env(yes=TRUE)"
+# Install wompwomp and set up Python environment
+RUN R -e "if (!require('remotes', quietly = TRUE)) install.packages('remotes'); \
+            remotes::install_github('pachterlab/wompwomp@88c804c569df64ed5c5939ab9acba62f4d54b458', upgrade='never'); \
+            remotes::install_github('pachterlab/biowomp@e7ab60c6cd356063cf0203f5acb666de7a68ada0', dependencies=TRUE, upgrade='never'); \
+            wompwomp::setup_python_env(yes=TRUE)"
 
-# Install local wompwomp and biowomp packages, then set up Python env
-RUN R -e "if (!require('devtools', quietly = TRUE)) install.packages('devtools'); \
-    devtools::install('/Users/joeyrich/Desktop/local/wompwomp', upgrade='never'); \
-    devtools::install('/Users/joeyrich/Desktop/local/biowomp', upgrade='never'); \
-    wompwomp::setup_python_env(yes=TRUE)"
+# --- Clone biowomp and set working directory ---
+RUN git clone https://github.com/pachterlab/ROP_2025.git /home/rstudio/ROP_2025 && \
+    chown -R rstudio:rstudio /home/rstudio/ROP_2025
+
+WORKDIR /home/rstudio/ROP_2025
