@@ -29,7 +29,7 @@ set.seed(42)
 ```
 
 Set up our python environment
-```{r setup-env, eval = FALSE}
+```{r setup-env}
 wompwomp::setup_python_env()
 ```
 
