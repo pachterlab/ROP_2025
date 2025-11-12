@@ -67,9 +67,7 @@ head(df)
 Implementing a greedy heuristic for weighted one-layer free problem
 ```{r}
 clus_df_gather_sorted <- data_sort(df, column1 = "tissue", column2 = "cluster", sorting_algorithm = "greedy_wolf", fixed_column = "tissue")
-crossing_edges_output <- determine_crossing_edges(clus_df_gather_sorted, column1 = "col1_int", column2 = "col2_int")
-crossing_edges <- crossing_edges_output$crossing_edges_df
-wompwomp_objective_greedy_wolf <- determine_weighted_layer_free_objective(crossing_edges)
+wompwomp_objective_greedy_wolf <- determine_crossing_edges(clus_df_gather_sorted, graphing_columns = c("col1_int", "col2_int"))$output_objective
 print(wompwomp_objective_greedy_wolf)
 ```
 
@@ -104,7 +102,7 @@ for (i in 1:nrow(perms)) {
         )
 
     map_dict <- setNames(new_labels, orig_levels)
-    clus_permuted_objective <- determine_crossing_edges(clus_permuted, column1 = "col1_int", column2 = "col2_int", return_weighted_layer_free_objective = TRUE)
+    clus_permuted_objective <- determine_crossing_edges(clus_permuted, graphing_columns = c("col1_int", "col2_int"))$output_objective
 
     objectives[i] <- clus_permuted_objective
 
@@ -146,9 +144,7 @@ ggplot(df_plot, aes(x = perm_id, y = objective)) +
 Now do the same for WBLF
 ```{r}
 clus_df_gather_sorted <- data_sort(df, column1 = "tissue", column2 = "cluster", sorting_algorithm = "greedy_wblf", random_initializations = 10)
-crossing_edges_output <- determine_crossing_edges(clus_df_gather_sorted, column1 = "col1_int", column2 = "col2_int")
-crossing_edges <- crossing_edges_output$crossing_edges_df
-wompwomp_objective_greedy_wblf <- determine_weighted_layer_free_objective(crossing_edges)
+wompwomp_objective_greedy_wblf <- determine_crossing_edges(clus_df_gather_sorted, graphing_columns = c("col1_int", "col2_int"))$output_objective
 print(wompwomp_objective_greedy_wblf)
 ```
 
@@ -195,13 +191,7 @@ for (i in 1:nrow(left_perms)) {
             )
 
         # Compute objective
-        obj <- determine_crossing_edges(
-            clus_permuted,
-            column1 = "col1_int",
-            column2 = "col2_int",
-            return_weighted_layer_free_objective = TRUE
-        )
-
+        obj <- determine_crossing_edges(clus_permuted, graphing_columns = c("col1_int", "col2_int"))$output_objective
         objectives[i, j] <- obj
 
         # Update minimum if needed
@@ -223,9 +213,7 @@ p_best_wblf
 Let's compare neighbornet too
 ```{r}
 clus_df_gather_sorted_neighbornet <- data_sort(df, column1 = "tissue", column2 = "cluster", sorting_algorithm = "neighbornet")
-crossing_edges_output <- determine_crossing_edges(clus_df_gather_sorted_neighbornet, column1 = "col1_int", column2 = "col2_int")
-crossing_edges <- crossing_edges_output$crossing_edges_df
-neighbornet_objective_minimum <- determine_weighted_layer_free_objective(crossing_edges)
+neighbornet_objective_minimum <- determine_crossing_edges(clus_df_gather_sorted_neighbornet, graphing_columns = c("col1_int", "col2_int"))$output_objective
 print(neighbornet_objective_minimum)
 
 plot_alluvial(clus_df_gather_sorted_neighbornet, column1 = "tissue", column2 = "cluster", column_weights = "value", sorting_algorithm = "none", color_bands = TRUE)

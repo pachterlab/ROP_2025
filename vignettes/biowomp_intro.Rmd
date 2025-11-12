@@ -11,8 +11,8 @@ vignette: >
 ---
 
 ```{r}
-devtools::load_all("/home/rstudio/Desktop/local/wompwomp")
-devtools::load_all("/home/rstudio/Desktop/local/biowomp")
+# devtools::load_all("/home/rstudio/Desktop/local/wompwomp")
+# devtools::load_all("/home/rstudio/Desktop/local/biowomp")
 
 library(biowomp)
 library(wompwomp)
