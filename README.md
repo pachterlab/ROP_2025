@@ -1,7 +1,7 @@
-Repository for reproducting figures from [here](https://doi.org/10.48550/arXiv.2509.03761).
+This repository contains code for reproducting the results from from the paper "[Optimizing alluvial plots](https://doi.org/10.48550/arXiv.2509.03761)" by Joseph Rich, Conrad Oakes, and Lior Pachter.
 
 ### Docker
-We provide an Docker image for running wompwomp built on [rocker/tidyverse](https://rocker-project.org)
+We provide a Docker image for running wompwomp built on [rocker/tidyverse](https://rocker-project.org)
 
 ```
 docker run -it -p 8787:8787 -e PASSWORD=<YOUR_PASS> josephrich98/ROP_2025:1.0
