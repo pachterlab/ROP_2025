@@ -62,16 +62,16 @@ df <- read.csv(got_file)
 ```
 
 ```{r}
-p <- plot_alluvial(df, graphing_columns = graphing_columns, sorting_algorithm = "none", default_sorting = "alphabetical", coloring_algorithm = "left", color_bands = FALSE, verbose = TRUE, output_plot_path = file.path(output_dir, "GoT_unsorted_alphabetical.pdf"), min_text = 0.01, save_height = 24, save_width = 24, text_size = 35, axis_text_size = 25, axis_text_vjust = -5, text_width = 0.5)
+p <- plot_alluvial(df, graphing_columns = graphing_columns, sorting_algorithm = "none", optimize_column_order = FALSE, default_sorting = "alphabetical", coloring_algorithm = "left", color_bands = FALSE, verbose = TRUE, output_plot_path = file.path(output_dir, "GoT_unsorted_alphabetical.pdf"), min_text = 0.01, save_height = 24, save_width = 24, text_size = 35, axis_text_size = 25, axis_text_vjust = -5, text_width = 0.5)
 p
 
-p <- plot_alluvial(df, graphing_columns = graphing_columns, sorting_algorithm = "none", default_sorting = "reverse_alphabetical", coloring_algorithm = "left", color_bands = FALSE, verbose = TRUE, output_plot_path = file.path(output_dir, "GoT_unsorted_reverse_alphabetical.pdf"), min_text = 0.01, save_height = 24, save_width = 24, text_size = 35, axis_text_size = 25, axis_text_vjust = -5, text_width = 0.5)
+p <- plot_alluvial(df, graphing_columns = graphing_columns, sorting_algorithm = "none", optimize_column_order = FALSE, default_sorting = "reverse_alphabetical", coloring_algorithm = "left", color_bands = FALSE, verbose = TRUE, output_plot_path = file.path(output_dir, "GoT_unsorted_reverse_alphabetical.pdf"), min_text = 0.01, save_height = 24, save_width = 24, text_size = 35, axis_text_size = 25, axis_text_vjust = -5, text_width = 0.5)
 p
 
-p <- plot_alluvial(df, graphing_columns = graphing_columns, sorting_algorithm = "none", default_sorting = "increasing", coloring_algorithm = "left", color_bands = FALSE, verbose = TRUE, output_plot_path = file.path(output_dir, "GoT_unsorted_increasing.pdf"), min_text = 0.01, save_height = 24, save_width = 24, text_size = 35, axis_text_size = 25, axis_text_vjust = -5, text_width = 0.5)
+p <- plot_alluvial(df, graphing_columns = graphing_columns, sorting_algorithm = "none", optimize_column_order = FALSE, default_sorting = "increasing", coloring_algorithm = "left", color_bands = FALSE, verbose = TRUE, output_plot_path = file.path(output_dir, "GoT_unsorted_increasing.pdf"), min_text = 0.01, save_height = 24, save_width = 24, text_size = 35, axis_text_size = 25, axis_text_vjust = -5, text_width = 0.5)
 p
 
-p <- plot_alluvial(df, graphing_columns = graphing_columns, sorting_algorithm = "none", default_sorting = "decreasing", coloring_algorithm = "left", color_bands = FALSE, verbose = TRUE, output_plot_path = file.path(output_dir, "GoT_unsorted_decreasing.pdf"), min_text = 0.01, save_height = 24, save_width = 24, text_size = 35, axis_text_size = 25, axis_text_vjust = -5, text_width = 0.5)
+p <- plot_alluvial(df, graphing_columns = graphing_columns, sorting_algorithm = "none", optimize_column_order = FALSE, default_sorting = "decreasing", coloring_algorithm = "left", color_bands = FALSE, verbose = TRUE, output_plot_path = file.path(output_dir, "GoT_unsorted_decreasing.pdf"), min_text = 0.01, save_height = 24, save_width = 24, text_size = 35, axis_text_size = 25, axis_text_vjust = -5, text_width = 0.5)
 p
 ```
 
